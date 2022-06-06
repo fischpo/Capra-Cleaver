@@ -71,14 +71,14 @@ You can pass a text file in the following [format](https://github.com/Mushroom-p
 The script will also create cleave.txt when no argument is passed which will become the default text file to be used in case of no argument.
 
 ## Following snippets aim to clarify the usage:
-> Here we are using the default text file and a folder in downloads.
-##### Setting:
+> Here we are using the default text file and a folder in desktop.
+### Setting:
 ```
 cleave_way=auto
 ```
-##### Text File:
+### Text File:
 ```
-base=C:\Users\{name}\Desktop\Ebi wan
+base=C:\Users\{name}\Desktop\Ebi
 
 ebi.mkv 01:52 02:46
 
@@ -86,18 +86,18 @@ ebi 2.mp4 00:55 01:26 11:25 16:30 20:00 24:22
 
 ebi_3.mp4 10:35 01:35:00
 ```
-## Cleave into segments :
+### Cut into parts :
 ```
 capra.exe -c false
 ```
-   ##### This will cleave the files according to the specified timestamps.   
+This will cleave the files according to the specified timestamps.   
    
   
-## Remove segments :
+### Remove parts :
 ```
 capra.exe -c true
 ```
-   ##### This will remove the specified timestamps.
+This will remove the specified timestamps.
 
 
 # Possible solutions for issues in video
