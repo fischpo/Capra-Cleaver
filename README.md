@@ -18,34 +18,34 @@ Also, make sure you have FFmpeg installed.
 You can install it from [here](https://www.ffmpeg.org/download.html)
 
 # Basic Formats:
-Text File:
+### Text File:
 ```
 / for comments place / in the beginning
 base=path of directory
 file_name start_timestamp end_timestamp
 ```
-Settings:
+### Settings:
 
-`cleave_way` :
-##### If set to true, the script will remove parts from the video. Otherwise, it will cut the video into parts.You can also set it to auto, so that value is set in cmd using *-c* argument.
+#### `cleave_way` :
+If set to true, the script will remove parts from the video. Otherwise, it will cut the video into parts.You can also set it to auto, so that value is set in cmd using *-c* argument.
 
-`vfor` :
-##### It includes a list of file formats the script will accept. You can add a format not here, only it should be supported by ffmpeg.
+#### `vfor` :
+It includes a list of file formats the script will accept. You can add a format not here, only it should be supported by ffmpeg.
 
-`skip_choice` :
-##### Set it to true if you want to avoid the video from being cut into specific timestamps.
+#### `skip_choice` :
+Set it to true if you want to avoid the video from being cut into specific timestamps.
 
-`cm_logs` :
-##### If set to true, it will create a log file containing the script output. Also, the script won't display any output on screen.
+#### `cm_logs` :
+If set to true, it will create a log file containing the script output. Also, the script won't display any output on screen.
 
-`fflogs` :
-##### You can set it to true if you would like the ffmpeg output as logs.
+#### `fflogs` :
+You can set it to true if you would like the ffmpeg output as logs.
 
-`avoid_negative_ts` :
-##### This decides what happens if the video has a negative timestamp.It can have the following values : `make_zero` , `auto` , `make_non_negative` , `disabled`.
-##### For more clarity, you can refer to the [docs](https://ffmpeg.org/ffmpeg-all.html).
+####  `avoid_negative_ts` :
+This decides what happens if the video has a negative timestamp.
+For more clarity, you can refer to the [docs](https://ffmpeg.org/ffmpeg-all.html).
 
-Command Line:
+### Command Line:
 ```
 cleaver.exe -c True
 cleaver.exe -f {Path to text file}
