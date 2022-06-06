@@ -5,24 +5,18 @@ A script using ffmpeg to seamlessly cut videos, making sure that the final outpu
 
 
 # Features
-- <b>Cut videos into any number of segments</b>
+- <b>Cut videos into multiple parts</b>
 
 
-- <b>Remove segments from a video</b>
+- <b>Remove parts from a video</b>
 
 # Installation
-Make sure you have FFmpeg installed.
-You can install it from the following site :
-
-https://www.ffmpeg.org/download.html
-
-The FFmpeg provided with the Capra-Cleaver executable can be installed from here:
-
-https://github.com/BtbN/FFmpeg-Builds
-
 If you have python installed, you can directly run the script;
-
 Otherwise, you can install the exe from [Releases](https://github.com/Mushroom-po/Capra-Cleaver/releases).
+
+Also, make sure you have FFmpeg installed.
+You can install it from [here](https://www.ffmpeg.org/download.html)
+
 # Basic Formats:
 Text File:
 ```
@@ -31,31 +25,25 @@ base=path of directory
 file_name start_timestamp end_timestamp
 ```
 Settings:
-```
-# false: split a video into segments, true: remove parts from a video, auto: pass value as argument in command line
 
-cleave_way=false
+`cleave_way` :
+##### If set to true, the script will remove parts from the video. Otherwise, it will cut the video into parts.You can also set it to auto, so that value is set in cmd using *-c* argument.
 
-# supported video formats, add a format not here
+`vfor` :
+##### It includes a list of file formats the script will accept. You can add a format not here, only it should be supported by ffmpeg.
 
-vfor=[mkv,mp4,mov,wmv,avi]
+`skip_choice` :
+##### Set it to true if you want to avoid the video from being cut into specific timestamps.
 
-# true: skip specific timestamps on execution
+`cm_logs` :
+##### If set to true, it will create a log file containing the script output. Also, the script won't display any output on screen.
 
-skip_choice=false
+`fflogs` :
+##### You can set it to true if you would like the ffmpeg output as logs.
 
-# true: output as logs
-
-cm_logs=false
-
-# true: ffmpeg output as logs
-
-fflogs=false
-
-# value: make_zero , auto , make_non_negative , disabled
-
-avoid_negative_ts=make_zero
-```
+`avoid_negative_ts` :
+##### This decides what happens if the video has a negative timestamp.It can have the following values : `make_zero` , `auto` , `make_non_negative` , `disabled`.
+##### For more clarity, you can refer to the [docs](https://ffmpeg.org/ffmpeg-all.html).
 
 Command Line:
 ```
@@ -108,15 +96,12 @@ capra.exe -c true
 
 
 # Possible solutions for issues in video
-While the videos are successfully cleaved most of the time , there may be times when it doesn't work.
+While the videos are successfully cut most of the time , there may be times when it doesn't work.
+
+This is due to the fact that the cut needs to be at keyframes.
 
 If there is some delay between removed parts of a video then either change the timestamps by a few seconds or change the value of `avoid_negative_ts` in settings.
 
 If the cleaved videos are of incorrect timestamp then try adjusting the timestamps by a few seconds.
 
 Incorrect timestamp / Delay may also be caused by subtitles in a video so try cleaving without the subs.
-
-# License
-
-This is licensed under GPL-3.0-or-later.
-Check out [License](https://github.com/Mushroom-po/Capra-Cleaver/blob/main/LICENSE) for more info.
