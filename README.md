@@ -107,6 +107,6 @@ This is due to the fact that the cut needs to be at keyframes.
 
 If there is some delay between removed parts of a video then either change the timestamps by a few seconds or change the value of `avoid_negative_ts` in settings.
 
-If the cleaved videos are of incorrect timestamp then try adjusting the timestamps by a few seconds.
+If the cut videos are of incorrect timestamp then try adjusting the timestamps by a few seconds.
 
-Incorrect timestamp / Delay may also be caused by subtitles in a video so try cleaving without the subs.
+Incorrect timestamp / Delay may also be caused by subtitles in a video so try cutting without the subs.
