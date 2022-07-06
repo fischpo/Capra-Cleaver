@@ -54,8 +54,9 @@ For more clarity, you can refer to the [docs](https://ffmpeg.org/ffmpeg-all.html
 ```
 cleaver.exe -c True
 cleaver.exe -f {Path to text file}
-cleaver.exe -f {Path to text file} -c False
-cleaver.exe -c True -f {Path to text file}
+cleaver.exe -e {Path where cut file is stored}
+cleaver.exe -e {Path} -f {Path to text file} -c False
+cleaver.exe -c True -e {Path} -f {Path to text file}
 ```
 
 # How To Use?
@@ -85,6 +86,16 @@ ebi.mkv 01:52 02:46
 ebi 2.mp4 00:55 01:26 11:25 16:30 20:00 24:22
 
 ebi_3.mp4 10:35 01:35:00
+```
+### Text File with new feature:
+```
+base=C:\Users\{name}\Desktop\Ebi
+
+|| 01:52 02:46
+
+|2| 00:55 01:26 11:25 16:30 20:00 24:22
+
+|3| 10:35 01:35:00
 ```
 ### Cut into parts :
 ```
