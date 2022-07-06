@@ -61,15 +61,40 @@ if tm:
   fflog = fuu(os.getenv('fflogs', 'false'))
   avoid_nts = fuu(os.getenv('avoid_negative_ts','make_zero'),0,0,1)
   pathlog = adieu+slsh+"cleave_logs"+slsh
+  exop=""
 else:
   with open(f"{adieu}{slsh}.env", "+a") as fle:
     fle.write("# false: split a video into segments, true: remove parts from a video, auto: pass value as argument in command line\n\ncleave_way=false\n\n# supported video formats, add a format not here\n\nvfor=[mkv,mp4,mov,wmv,avi]\n\n# true: skip specific timestamps on execution\n\nskip_choice=false\n\n# true: output as logs\n\ncm_logs=false\n\n# true: ffmpeg output as logs\n\nfflogs=false\n\n# value: make_zero , auto , make_non_negative , disable\n\navoid_negative_ts=make_zero")
     print("Restart")
     sys.exit()
+
 def ice(s_io):
     if len(s_io)==1:
         s_io=['00',s_io[0]]
     return s_io
+
+def curbra(sth,bpth):
+  dech=1
+  bou=sth.split(" ",1)
+  sn=bou[0].split('|')
+  if len(sn)!=3:
+    return sth
+  if sn[1].isnumeric():
+    dech=int(sn[1])
+  flist=[]
+  if not slsh in bpth:
+    bpth+=slsh
+  drlis=os.listdir(bpth)
+  drlis.sort()
+  tm=0
+  for fi in drlis:
+    if not os.path.isdir(os.path.join(bpth,fi)):
+     if fi.rsplit('.',1)[1] in sform:
+      tm+=1
+      if tm==dech:
+        bou[0]=fi
+        return " ".join(bou)
+  return sth
 
 def degure(inf,des):
     shib=inf.copy()
@@ -185,8 +210,8 @@ def reg(a,lo):
 def mergd(ram):
   rem=[]
   for nm in ram:
-    with open(f"{adieu}{slsh}tmp.txt","+w") as fp:
-      fp.write(nm[0])
+    with open(f"{adieu}{slsh}tmp.txt","+bw") as fp:
+      fp.write(nm[0].encode('utf-8'))
     onm = os.path.splitext(nm[1])
     if logp:
       reg(1, f"Merging following files:\n{nm[0]}")
@@ -237,6 +262,9 @@ def clv(li,tr):
     print(f"Directory: {il}\n")
    for inp in li[il]:
     if type(li[il][inp]) is dict:
+        zeyg=il
+        if exop!="":
+          zeyg=exop
         inu=f"{il}{slsh}{inp}"
         filyun=os.path.splitext(inp)
         if logp:
@@ -259,7 +287,7 @@ def clv(li,tr):
              ch=input("")
              if ch.lower() in ["n","no"]:
                 continue
-            optfl = f"{il}{slsh}{filyun[0]} {timsp[0][0].replace(':','_')}-{timsp[1][0].replace(':','_')}{filyun[1]}"
+            optfl = f"{zeyg}{slsh}{filyun[0]} {timsp[0][0].replace(':','_')}-{timsp[1][0].replace(':','_')}{filyun[1]}"
             cmds.append(f"file '{optfl}'\n")
             cmdsnm.append(optfl)
             stm=timsp[0][0]
@@ -307,6 +335,8 @@ def sich(cont):
             else:
                 if "/" not in i and ""!=i:
                     shi=i
+                    if "|" in shi:
+                      shi=curbra(shi,bsname)
                     if '.' in shi:
                      ane = shi.rsplit(".", 1)[1].split(" ")[0]
                      if ane in sform:
@@ -368,14 +398,29 @@ def sich(cont):
  
 def advent(arg=sys.argv[1:]):
  try:
-  arch=1
+  if arg==[]:
+    arch=0
+  else:
+    arch=1
   global ygg
+  global exop
   if ygg in ['auto']:
-    if '-c' in arg and arg.index('-c')<(len(arg)-1):
-      ygg=fuu(arg[arg.index('-c')+1])
-      arch=0
+    if '-c' in arg:
+      if arg.index('-c')<(len(arg)-1):
+       ygg=fuu(arg[arg.index('-c')+1])
+       arch=0
     else:
+      arch=0
       ygg=False
+
+  if "-e" in arg:
+    if arg.index("-e")<(len(arg)-1):
+     if os.path.isdir(arg[arg.index("-e")+1]):
+      exop=arg[arg.index("-e")+1]
+     else:
+      print(f"Using default output path\n")
+     arch=0
+
   if '-f' in arg and arg.index("-f")<(len(arg)-1):
     if os.path.isfile(arg[arg.index('-f')+1]):
       ptde=arg[arg.index('-f')+1]
@@ -384,7 +429,7 @@ def advent(arg=sys.argv[1:]):
       reg(0, f"LocErr : File {arg[arg.index('-f')+1]} does not exist")
      else:
       print(f"Error : File {arg[arg.index('-f')+1]} does not exist")
-      sys.exit()
+     sys.exit()
   elif arg and arch:
     if logp:
      reg(0, f"ArgErr : Error splitting the argument list: Option not found")
