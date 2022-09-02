@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/Mushroom-po/Capra-Cleaver/blob/main/capra.ico?raw=true"></p>
+<p align="center"><img src="https://github.com/enyyo/Capra-Cleaver/blob/main/capra.ico?raw=true"></p>
 
 # Capra-Cleaver
 A script using ffmpeg to seamlessly cut videos, making sure that the final output has no loss in quality.
@@ -12,7 +12,7 @@ A script using ffmpeg to seamlessly cut videos, making sure that the final outpu
 
 # Installation
 If you have python installed, you can directly run the script;
-Otherwise, you can install the exe from [Releases](https://github.com/Mushroom-po/Capra-Cleaver/releases).
+Otherwise, you can install the exe from [Releases](https://github.com/enyyo/Capra-Cleaver/releases).
 
 Also, make sure you have FFmpeg installed.
 You can install it from [here](https://www.ffmpeg.org/download.html)
@@ -67,7 +67,7 @@ FFmpeg should be in the directory of the script or should be an environment vari
 
 When the script is first executed, it will create an environment file which is basically your settings.
 
-You can pass a text file in the following [format](https://github.com/Mushroom-po/Capra-Cleaver#basic-formats) as an argument.
+You can pass a text file in the following [format](https://github.com/enyyo/Capra-Cleaver#basic-formats) as an argument.
 
 The script will also create cleave.txt when no argument is passed which will become the default text file to be used in case of no argument.
 
