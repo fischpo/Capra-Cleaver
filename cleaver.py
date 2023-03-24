@@ -38,7 +38,7 @@ def fuu(inp,poi=0,va=0,nts=0):
   else:
     return False   
 
-if os.name is 'posix':
+if os.name == 'posix':
     slsh = "/"
 else:
     slsh="\\"
